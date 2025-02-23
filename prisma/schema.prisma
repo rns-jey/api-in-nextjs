@@ -13,3 +13,12 @@ datasource db {
   url      = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
 }
+
+model User {
+  id         Int      @id @default(autoincrement())
+  email      String   @unique
+  password   String   // Hashed password string
+  
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
