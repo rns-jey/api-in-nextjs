@@ -30,3 +30,14 @@ export async function POST(req: Request) {
     return new NextResponse("Internal Server Error", { status: 500 });
   }
 }
+
+export async function GET(req: Request) {
+  try {
+    const users = await db.user.findMany({});
+
+    return NextResponse.json(users);
+  } catch (error) {
+    console.log(error);
+    return new NextResponse("Internal Server Error", { status: 500 });
+  }
+}
