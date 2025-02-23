@@ -33,7 +33,12 @@ export async function POST(req: Request) {
 
 export async function GET(req: Request) {
   try {
-    const users = await db.user.findMany({});
+    const users = await db.user.findMany({
+      select: {
+        id: true,
+        email: true,
+      },
+    });
 
     return NextResponse.json(users);
   } catch (error) {
